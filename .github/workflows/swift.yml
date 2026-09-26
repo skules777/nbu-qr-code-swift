@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  macos:
+    name: macOS — build & test
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        run: swift build
+      - name: Test
+        run: swift test
+
+  ios:
+    name: iOS — build
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        # CI runners have no signing identity, and a library build does not need one.
+        run: >
+          xcodebuild build
+          -scheme NBUQRCode-Package
+          -destination 'generic/platform=iOS'
+          CODE_SIGNING_ALLOWED=NO
+
+  docs:
+    name: Documentation
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build documentation
+        # Warnings as errors catch symbol links broken by a rename.
+        run: >
+          xcodebuild docbuild
+          -scheme NBUQRCode-Package
+          -destination 'generic/platform=iOS'
+          CODE_SIGNING_ALLOWED=NO
+          OTHER_DOCC_FLAGS=--warnings-as-errors
