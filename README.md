@@ -19,7 +19,7 @@ Swift Package Manager:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/skules777/nbu-qr-code-swift", from: "1.0.0")
+    .package(url: "https://github.com/skules777/nbu-qr-code-swift", from: "1.0.1")
 ]
 ```
 
@@ -132,6 +132,17 @@ NBUQRImageRenderer(accentColor: NBUQRColor(hex: "#1A237E")!)  // колір ва
 
 Колір отримують знак ₴ і центри трьох кутових квадратів. Надто світлий колір
 рендер відхилить, щоб код лишився читабельним.
+
+### Категорія (поле 10)
+
+```swift
+category: "MP2P/MP2B" // код категорії / цілі за ISO 20022
+category: ""          // за замовчуванням: у QR-код потрапляє OTHR/OTHR («інше / інше»)
+```
+
+Порожнім поле 10 бібліотека не лишає: постанова позначає його обовʼязковим, а
+Приват24 код із порожнім полем відхиляє. Деталі — у
+[docs/NBU-COMPLIANCE.md](docs/NBU-COMPLIANCE.md#кодування-даних).
 
 ### Заборона змінювати поля
 

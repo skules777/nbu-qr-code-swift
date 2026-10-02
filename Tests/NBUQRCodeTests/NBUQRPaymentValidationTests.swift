@@ -154,11 +154,20 @@ final class NBUQRPaymentValidationTests: XCTestCase {
         }
     }
 
-    // Порожнє поле 10 банки опрацьовують коректно, і офіційного переліку
-    // значень CCCC/PPPP немає — тож порожнє значення лишається валідним.
+    // Офіційного переліку значень CCCC/PPPP немає, тож вимагати поле 10 від
+    // користувача не можна — порожнє значення лишається валідним.
     func testEmptyCategoryPasses() {
         var o = validPayment(); o.category = ""
         XCTAssertEqual(o.validate(), [])
+    }
+
+    // Приват24 відхиляє код із порожнім полем 10 (і QR, і посилання), тож порожня
+    // категорія кодується як "інше / інше" за ISO 20022, а не лишається порожньою.
+    func testEmptyCategoryIsEncodedAsOther() throws {
+        var o = validPayment(); o.category = ""
+        XCTAssertEqual(try parsedQR(o).category, "OTHR/OTHR")
+        let withDefaults = NBUQRPayment(recipient: "К", iban: "UA511234567890123456789012345", recipientCode: "1", purpose: "Ч")
+        XCTAssertEqual(try NBUQRDecoder.parse(payload: NBUQRPayload(withDefaults).value).category, "OTHR/OTHR")
     }
 
     func testTooLongReferenceFails() {

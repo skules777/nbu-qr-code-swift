@@ -48,7 +48,9 @@ public struct NBUQRPayment: Hashable, Sendable {
     public var amount: Decimal?
     /// Код отримувача коштів (поле 9, до 10 байтів в обраному кодуванні).
     public var recipientCode: String
-    /// Код категорії/цілі у форматі CCCC/PPPP за ISO 20022 (поле 10).
+    /// Код категорії/цілі у форматі CCCC/PPPP за ISO 20022 (поле 10). Порожнє значення
+    /// в QR-код потрапляє як `OTHR/OTHR` ("інше / інше"): поле 10 обовʼязкове, і Приват24
+    /// код із порожнім полем відхиляє.
     public var category: String
     /// Ідентифікатор рахунку на оплату отримувача (поле 11, до 35 символів ASCII).
     public var reference: String

@@ -11,6 +11,12 @@ enum NBUQRFormat {
     /// Версія формату 003 передбачає єдину валюту — гривню, тож валюта є
     /// константою формату, а не параметром платежу.
     static let currencyCode = "UAH"
+    /// Що кодується в поле 10, коли `category` порожня: "інше / інше" за ISO 20022
+    /// (код категорії `OTHR` і код цілі `OTHR`) — чесне "не вказано", а не вигаданий код.
+    /// Таблиця 2 позначає поле обовʼязковим, і Приват24 код із порожнім полем 10
+    /// відхиляє (і QR, і посилання; перевірено 02.10.2026), тоді як monobank і
+    /// Sense Bank приймають обидва варіанти.
+    static let fallbackCategory = "OTHR/OTHR"
     /// Максимальний обсяг даних, які кодуються в графічний QR-код
     /// (додаток 4, п. 8 розділу IV). Обмеження стосується саме зображення,
     /// тому на посилання (`deepLink`) не поширюється.
@@ -79,7 +85,7 @@ enum NBUQRFormat {
             ascii(payment.normalizedIBAN),
             ascii(formatAmount(payment.amount)),
             text(payment.recipientCode),
-            ascii(payment.category),
+            ascii(payment.category.isEmpty ? fallbackCategory : payment.category),
             ascii(payment.reference),
             text(payment.purpose),
             text(payment.displayText),
