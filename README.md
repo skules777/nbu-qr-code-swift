@@ -2,8 +2,8 @@
 
 [![CI](https://github.com/skules777/nbu-qr-code-swift/actions/workflows/swift.yml/badge.svg)](https://github.com/skules777/nbu-qr-code-swift/actions/workflows/swift.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Swift Package Manager](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)](https://swift.org/package-manager/)
-![Platforms](https://img.shields.io/badge/platforms-iOS%2015%2B%20%7C%20macOS%2012%2B-lightgrey.svg)
+[![Swift versions](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fskules777%2Fnbu-qr-code-swift%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/skules777/nbu-qr-code-swift)
+[![Platforms](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fskules777%2Fnbu-qr-code-swift%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/skules777/nbu-qr-code-swift)
 
 Платіжні QR-коди НБУ для оплати за IBAN (формат 003,
 [Постанова №97](https://bank.gov.ua/admin_uploads/law/19082025_97.pdf)).
