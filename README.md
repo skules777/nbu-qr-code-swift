@@ -31,6 +31,9 @@ dependencies: [
 - **`NBUQRCode`** — платіж і посилання;
 - **`NBUQRCodeImage`** — зображення QR-коду.
 
+Для Kotlin-проєктів (Android, Kotlin Multiplatform) є
+[nbu-qr-code-kotlin](https://github.com/skules777/nbu-qr-code-kotlin).
+
 ## Швидкий старт
 
 <p align="center">
