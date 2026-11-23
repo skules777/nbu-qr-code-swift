@@ -8,9 +8,9 @@ on:
 jobs:
   macos:
     name: macOS — build & test
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build
         run: swift build
       - name: Test
@@ -18,9 +18,9 @@ jobs:
 
   ios:
     name: iOS — build
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build
         # CI runners have no signing identity, and a library build does not need one.
         run: >
@@ -31,9 +31,9 @@ jobs:
 
   docs:
     name: Documentation
-    runs-on: macos-14
+    runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Build documentation
         # Warnings as errors catch symbol links broken by a rename.
         run: >
